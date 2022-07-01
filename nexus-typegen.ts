@@ -128,6 +128,11 @@ export interface NexusGenArgTypes {
       password: string; // String!
     }
   }
+  Query: {
+    feed: { // args
+      filter?: string | null; // String
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
