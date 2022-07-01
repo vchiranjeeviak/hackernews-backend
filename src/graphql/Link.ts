@@ -39,12 +39,20 @@ export const LinkMutation = extendType({
                 description: nonNull(stringArg())
             },
             resolve(parent, args, context) {
+                const { userId } = context;
+                
+                if(!userId) {
+                    throw new Error("Login to post");
+                }
+
                 const newLink = context.prisma.link.create({
                     data: {
                         description: args.description,
-                        url: args.url
+                        url: args.url,
+                        postedBy: { connect: { id: userId } }
                     }
                 })
+
                 return newLink
             }
         })

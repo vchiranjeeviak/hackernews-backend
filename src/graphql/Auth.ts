@@ -70,7 +70,7 @@ export const AuthMutation = extendType({
                     throw new Error("Password incorrect")
                 }
 
-                const token = await jwt.sign({id: user.id}, process.env.SECRET_KEY ?? '');
+                const token = await jwt.sign({userId: user.id}, process.env.SECRET_KEY ?? '');
 
                 return {
                     token,
